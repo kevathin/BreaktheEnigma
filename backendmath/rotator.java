@@ -1,4 +1,4 @@
-class rotator{
+export default class rotator{
     
     /*
     This class is used to represent the rotors used in the enigma.

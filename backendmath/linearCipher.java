@@ -1,4 +1,4 @@
-class linearCipher{
+export default class linearCipher{
     /*
     this class is used for the reflector used inside of the enigma where 
     instead of rotators it acts like the plug box. An example of this

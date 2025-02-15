@@ -1,5 +1,5 @@
-class letterToOrFromNumber{
 
+public class letterToOrFromNumber{
     /*
     So this is used to easily turn the value of each letter into its 
     integer representation. however the String.fromCharCode(x) returns
@@ -10,8 +10,8 @@ class letterToOrFromNumber{
     The constructor creates the letter to number map and the number to 
     letter map then activates both functions to fill each map.
     */
-    constructor(){
-        this.letterMap = new Map();
+    public letterToOrFromNumber(){
+        hashmap letterMap = new hashmap();
         this.numberMap = new Map();
         setupLetterToNumber();
         setupNumberToLetter();

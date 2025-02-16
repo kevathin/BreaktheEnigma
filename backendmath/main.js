@@ -121,7 +121,7 @@ class LinearCipher{
 class Rotator{
     
     /*
-    This class is used to represent the rotors used in the enigma.
+    This class is used to represent the rotors used in the Enigma.
 
     the rotors will differ from the mirror because the rotors will
     rotate all the values contained which is the main selling point
@@ -238,27 +238,27 @@ var rotatorB = new Rotator();
 var rotatorC = new Rotator();
 var mirror = new LinearCipher();
 var plugboardused = new plugboard();
-var plugs = 0;
-var plug1 = -1;
-var plug2 = -1;
-var outputmessage = "";
-var isencrypting = false;
+var activePlugs = 0;
+var plugLocationA = -1;
+var plugLocationB = -1;
+var outputMessage = "";
+var settingDataSave = false;
 var initialASetting = 0;
 var initialBSetting = 0;
 var initialCSetting = 0;
-var initialplug1 = -1;
-var initialplug2 = -1;
-var initialplugs = 0;
+var initialPlugLocationA = -1;
+var initialPlugLocationB = -1;
+var initialActivePlugs = 0;
 
 function encryptletter(letter){
-    if(isencrypting == false){
+    if(settingDataSave == false){
         initialASetting = rotatorA.getrotations();
         initialBSetting = rotatorB.getrotations();
         initialCSetting = rotatorC.getrotations();
-        initialplugs = plugs;
-        initialplug1 = plug1;
-        initialplug2 = plug2;
-        isencrypting = true;
+        initialActivePlugs = activePlugs;
+        initialPlugLocationA = plugLocationA;
+        initialPlugLocationB = plugLocationB;
+        settingDataSave = true;
     }
     
     var passingletter = converter.getNumber(letter);
@@ -316,8 +316,8 @@ function visibleupdate(updateid,value){
 }
 
 function encryptoutput(value){
-    outputmessage += value;
-    document.getElementById("outputletter").innerHTML = outputmessage;
+    outputMessage += value;
+    document.getElementById("outputletter").innerHTML = outputMessage;
 }
 
 function plugvisibleupdate(updateid,value){
@@ -326,82 +326,82 @@ function plugvisibleupdate(updateid,value){
 
 function plugboardadd(letter){
     letter = converter.getNumber(letter);
-    if(plugs == 1){
-        if(letter == plug1){
-            plug1 = -1;
-            plugs = 0;
+    if(activePlugs == 1){
+        if(letter == plugLocationA){
+            plugLocationA = -1;
+            activePlugs = 0;
             
             plugvisibleupdate("plug"+converter.getLetter(letter), "buttonface");
         }
         else{
-            plug2 = letter;
-            plugboardused.setpairvalue(plug1,plug2);
-            plugs = 2;
+            plugLocationB = letter;
+            plugboardused.setpairvalue(plugLocationA,plugLocationB);
+            activePlugs = 2;
             plugvisibleupdate("plug"+converter.getLetter(letter), "red");
         }
     }
-    else if(plugs == 2){
-        plugvisibleupdate("plug"+converter.getLetter(plug1), "buttonface");
-        plugvisibleupdate("plug"+converter.getLetter(plug2), "buttonface");
-        plugboardused.removepairvalue(plug1,plug2);
-        plugs = 1;
-        plug1 = letter;
+    else if(activePlugs == 2){
+        plugvisibleupdate("plug"+converter.getLetter(plugLocationA), "buttonface");
+        plugvisibleupdate("plug"+converter.getLetter(plugLocationB), "buttonface");
+        plugboardused.removepairvalue(plugLocationA,plugLocationB);
+        activePlugs = 1;
+        plugLocationA = letter;
         plugvisibleupdate("plug"+converter.getLetter(letter), "red");
-        plug2 = -1;
+        plugLocationB = -1;
     }else{
-        plug1 = letter;
-        plugs = 1;
+        plugLocationA = letter;
+        activePlugs = 1;
         plugvisibleupdate("plug"+converter.getLetter(letter), "red");
     }
 
 }
 
 function cleareverything(){
-    if(plugs == 1){
-        plugvisibleupdate(converter.getLetter(plug1), "buttonface");
-        plugs = 0;
-        plug1 = -1;
-    }else if(plugs == 2){
-        plugboardused.removepairvalue(plug1,plug2);
-        plugvisibleupdate("plug"+converter.getLetter(plug1), "buttonface");
-        plugvisibleupdate("plug"+converter.getLetter(plug2), "buttonface");
-        plugs = 0;
-        plug1 = -1;
-        plug2 = -1;
+    if(activePlugs == 1){
+        plugvisibleupdate(converter.getLetter(plugLocationA), "buttonface");
+        activePlugs = 0;
+        plugLocationA = -1;
+    }else if(activePlugs == 2){
+        plugboardused.removepairvalue(plugLocationA,plugLocationB);
+        plugvisibleupdate("plug"+converter.getLetter(plugLocationA), "buttonface");
+        plugvisibleupdate("plug"+converter.getLetter(plugLocationB), "buttonface");
+        activePlugs = 0;
+        plugLocationA = -1;
+        plugLocationB = -1;
     }
-
+    outputMessage = "";
     rotatorA.resetrotations();
     rotatorB.resetrotations();
     rotatorC.resetrotations();
     visibleupdate("rotorA", rotatorA.getrotations());
     visibleupdate("rotorB", rotatorB.getrotations());
     visibleupdate("rotorC", rotatorC.getrotations());
-    isencrypting = false;
+    settingDataSave = false;
     visibleupdate("outputletter", "output value");
 }
 
 function recoverinitialsetting(){
-    if(plugs == 1){
-        plugvisibleupdate(converter.getLetter(plug1), "buttonface");
-        plugs = 0;
-        plug1 = -1;
-    }else if(plugs == 2){
-        plugboardused.removepairvalue(plug1,plug2);
-        plugvisibleupdate("plug"+converter.getLetter(plug1), "buttonface");
-        plugvisibleupdate("plug"+converter.getLetter(plug2), "buttonface");
-        plugs = 0;
-        plug1 = -1;
-        plug2 = -1;
+    if(activePlugs == 1){
+        plugvisibleupdate(converter.getLetter(plugLocationA), "buttonface");
+        activePlugs = 0;
+        plugLocationA = -1;
+    }else if(activePlugs == 2){
+        plugboardused.removepairvalue(plugLocationA,plugLocationB);
+        plugvisibleupdate("plug"+converter.getLetter(plugLocationA), "buttonface");
+        plugvisibleupdate("plug"+converter.getLetter(plugLocationB), "buttonface");
+        activePlugs = 0;
+        plugLocationA = -1;
+        plugLocationB = -1;
     }
-    plug1 = initialplug1;
-    plug2 = initialplug2;
-    plugs = initialplugs;
-    if(plugs == 2){
-        plugvisibleupdate("plug"+converter.getLetter(plug1), "red");
-        plugvisibleupdate("plug"+converter.getLetter(plug2), "red");
-        plugboardused.setpairvalue(plug1,plug2)
+    plugLocationA = initialPlugLocationA;
+    plugLocationB = initialPlugLocationB;
+    activePlugs = initialActivePlugs;
+    if(activePlugs == 2){
+        plugvisibleupdate("plug"+converter.getLetter(plugLocationA), "red");
+        plugvisibleupdate("plug"+converter.getLetter(plugLocationB), "red");
+        plugboardused.setpairvalue(plugLocationA,plugLocationB)
     } 
-    outputmessage = "";
+    outputMessage = "";
     rotatorA.setrotations(initialASetting);
     rotatorB.setrotations(initialBSetting);
     rotatorC.setrotations(initialCSetting);

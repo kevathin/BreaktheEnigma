@@ -622,8 +622,6 @@ function exampleDecryption(text, partialsolve){
 let firstalr = 0;
 let secondalr = 0;
 let thirdalr = 0;
-let forthalr = 0;
-let fithalr = 0;
 
 function firstquestion(){
     let questionOneAnswer = document.getElementById("question1").value;
@@ -632,6 +630,9 @@ function firstquestion(){
     if(questionOneAnswer == "happyhair"){
         document.getElementById("answer1").innerHTML = "How come I didn't see that? happyhair is used in every one of these telegraphs. Great work anyway! lets move on.";
         firstalr = 1;
+        if(firstalr == 1 && secondalr == 1 && thirdalr == 1){
+            congratulations()
+        }
     }
 }
 function secondquestion(){
@@ -640,6 +641,9 @@ function secondquestion(){
     if(questionTwoAnswerA == 25 && questionTwoAnswerB == 26){
         document.getElementById("answer2").innerHTML = "It's so obvious now that I look at it now! Thank you and your team for the help in this section!";
         secondalr = 1;
+        if(firstalr == 1 && secondalr == 1 && thirdalr == 1){
+            congratulations()
+        }
     }
 }
 function thirdquestion(){
@@ -648,5 +652,13 @@ function thirdquestion(){
     if(questionThreeAnswer == 17576){
         document.getElementById("answer3").innerHTML = "yeesh that is still a big number to compute. By my calculations that's about over 5 million combinations. Well no time to waste.";
         thirdalr = 1;
+        if(firstalr == 1 && secondalr == 1 && thirdalr == 1){
+            congratulations()
+        }
     }
+}
+
+function congratulations(){
+    document.getElementById("congradulations").innerHTML = "You Fixed The Algorithm!";
+    document.getElementById("history").innerHTML = "While you and your team was greatly able to assist in the war effort, sometimes it doesn't have a happy ending. Alan Turing, famous for his work on the Enigma Machine died at the age of 41 from cyanide poisoning. Which is still debatable if it was suicide or murder, a briliant mind died young.";
 }

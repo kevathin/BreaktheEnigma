@@ -63,18 +63,18 @@ class LinearCipher{
 
     The constructor creates the hashmap and send to setup to fill the map.
     */
-    constructor(cipherValues){
+    constructor(){
         this.map = new Map();
-        this.setup
+        this.setup();
     }
 
     /*
     this fills the hashmap and adds the resulting mirror values of each
     character.
     */
-    setup(cipherValues){
+    setup(){
         for(let i = 0; i< 26; i++){
-            this.map.set(i,cipherValues[i]);
+            this.map.set(i, i);
         }
     }
 
@@ -140,13 +140,13 @@ class Rotator{
         for(let i = 0; i < 26; i++){
             let k = i;
             let v = (this.map.get(i) +1) % 26;
-            setvalue(k,v);
+            this.setvalue(k,v);
         }
 
         this.rotations ++;
 
-        if(rotations == 26){
-            roations = 0;
+        if(this.rotations == 26){
+            this.rotations = 0;
             return true;
         }
         else{
@@ -171,7 +171,28 @@ var rotatorB = new Rotator();
 var rotatorC = new Rotator();
 var mirror = new LinearCipher();
 
+
+
 function encryptletter(letter){
-    
+    let passingletter = converter.getNumber(letter);
+    passingletter = rotatorA.getvalue(passingletter);
+    passingletter = rotatorB.getvalue(passingletter);
+    passingletter = rotatorC.getvalue(passingletter);
+    passingletter = mirror.getvalue(passingletter);
+    passingletter = rotatorC.getvalue(passingletter);
+    passingletter = rotatorB.getvalue(passingletter);
+    passingletter = rotatorA.getvalue(passingletter);
+    console.log(passingletter);
+    if(rotatorA.rotate() == true){
+        if(rotatorB.rotate() == true){
+            rotatorC.rotate();
+        }
+
+    }
 }
 
+encryptletter("a");
+encryptletter("a");
+encryptletter("a");
+encryptletter("a");
+encryptletter("a");

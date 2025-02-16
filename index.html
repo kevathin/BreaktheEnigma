@@ -16,7 +16,7 @@
             </h1>
 
             <p>
-                This is a puzzle/educational game revolving around the World War II German Enigma machine 
+                This is a puzzle/educational game revolving around the World War II German Enigma machine. 
                 This machine was used to encrypt and decrypt military messages using a mechanical box that
                 would turn any inputted letter into an encrypted letter. It is you and your team's job to
                 understand the inner workings of the box and using old decrypted messages to help fix the 
@@ -94,6 +94,7 @@
                         <button onclick="encryptletter('n')">N</button>
                         <button onclick="encryptletter('m')">M</button>
                     </section>
+                    <br>
                 </div>
                 <br>
                 
@@ -130,7 +131,8 @@
                         <button onclick="plugboardadd('b')" id="plugb">B</button>
                         <button onclick="plugboardadd('n')" id="plugn">N</button>
                         <button onclick="plugboardadd('m')" id="plugm">M</button>
-                    </section>    
+                    </section>   
+                    <br> 
                 </div>
                 <br>
                 <section id="control_buttons">
@@ -148,16 +150,48 @@
                 <img src="" id="machine_explenation_image">
             </section>
         </div>
-        
-        
-        
     
         <section>
+            <h2>Old Deciphered Telegraphs</h2>
+            <p>
+                Knowing how the Enigma worked is not going to get us to the path of victory.
+                Luckily we deciphered some old telegraphs! They are too old for us to use the 
+                information but it might include a hint on how we can predict some patters?
+                
+                <ul>
+                    <li>The weather is clear happy hair</li>
+                    <li>These Recent missions have been going well happy hair</li>
+                    <li>Send recruits to location XYZ happy hair</li>
+                </ul>
+            </p>
+        </section>
+        
+        <section>
+            <h2>Break the Enigma!</h2>
+            <p>
+                Sir, we have some pre existing programs that are almost finished. The issue is is that we have encountered some problems with certain areas of the program. If we want to crack this Enigma we must fix this together! 
+            </p>
+            <form action="backendmath/main.js" method="post" onsubmit="firstquestion()">
+                <p>
+                    // We believe that there is some sort of pattern in the telegraphs.<br>
+                    // This would greatly reduce processing time but out team has been <br>
+                    // unable to determin the answer. We got the code ready, we just need <br>
+                    // to add the pattern.<br>
+                    let pattern = <input type="text" required placeholder="the pattern"> ;<br>
+                    function returnPatterValues(pattern){ <br>
+                        return patter.split("");    <br>
+                    }<br>
+                </p>
+                <input type="submit" value="submit" >
+            </form>
+
+            <br>
+
             
         </section>
-    
         <footer>
-    
+            <p>Author: Kevin Bertasius </p>
+            <a href="mailto:kbert395@mtroyal.ca"> Email: kbert395@mtroyal.ca</a>
         </footer>
     </div>
     

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/mainstyle.css">
-    <script src="backendmath/main.js"></script>
+    
     <title>Break Enigma</title>
 </head>
 <body>
@@ -44,51 +44,56 @@
         
         <div id="machine_section">
             <div id="example_machine">
-                <section class="horizontal_machine_comp" id="rotors">
-                    <p class="tall_shape upletters">REFLECTOR</p>
-                    <p class="tall_shape"><button id="rotorC" onclick="rotate('rotorC')">0</button></p>
-                    <p class="tall_shape"><button id="rotorB" onclick="rotate('rotorB')">0</button></p>
-                    <p class="tall_shape"><button id="rotorA" onclick="rotate('rotorA')">0</button></p>
-                    <p class="tall_shape upletters">INPUT</p>
-                </section>
+                <div id="rotors">
+                    <section class="horizontal_machine_comp rotors">
+                        <p class="tall_shape upletters">REFLECTOR</p>
+                        <p class="tall_shape"><button id="rotorC" onclick="rotate('rotorC')">0</button></p>
+                        <p class="tall_shape"><button id="rotorB" onclick="rotate('rotorB')">0</button></p>
+                        <p class="tall_shape"><button id="rotorA" onclick="rotate('rotorA')">0</button></p>
+                        <p class="tall_shape upletters">INPUT</p>
+                    </section>
+                </div>
+                
 
-                <p id="outputletter">output value</p>
-
-                <section class="horizontal_machine_comp mainkeyboard">
-                    <button onclick="encryptletter('q')">Q</button>
-                    <button onclick="encryptletter('w')">W</button>
-                    <button onclick="encryptletter('e')">E</button>
-                    <button onclick="encryptletter('r')">R</button>
-                    <button onclick="encryptletter('t')">T</button>
-                    <button onclick="encryptletter('z')">Z</button>
-                    <button onclick="encryptletter('u')">U</button>
-                    <button onclick="encryptletter('i')">I</button>
-                    <button onclick="encryptletter('o')">O</button>
-                    <button onclick="encryptletter('p')">P</button>
-                </section>
-    
-                <section class="horizontal_machine_comp mainkeyboard" id="secondline">
-                    <button onclick="encryptletter('a')">A</button>
-                    <button onclick="encryptletter('s')">S</button>
-                    <button onclick="encryptletter('d')">D</button>
-                    <button onclick="encryptletter('f')">F</button>
-                    <button onclick="encryptletter('g')">G</button>
-                    <button onclick="encryptletter('h')">H</button>
-                    <button onclick="encryptletter('j')">J</button>
-                    <button onclick="encryptletter('k')">K</button>
-                    <button onclick="encryptletter('l')">L</button>
-                        
-                </section>
-    
-                <section class="horizontal_machine_comp mainkeyboard" id="thirdline">
-                    <button onclick="encryptletter('y')">Y</button>
-                    <button onclick="encryptletter('x')">X</button>
-                    <button onclick="encryptletter('c')">C</button>
-                    <button onclick="encryptletter('v')">V</button>
-                    <button onclick="encryptletter('b')">B</button>
-                    <button onclick="encryptletter('n')">N</button>
-                    <button onclick="encryptletter('m')">M</button>
-                </section>
+                <p id="outputletter" class="outputletter">output value</p>
+                <div id="keyboardholder">
+                    <section class="horizontal_machine_comp mainkeyboard" id="firstline">
+                        <button onclick="encryptletter('q')">Q</button>
+                        <button onclick="encryptletter('w')">W</button>
+                        <button onclick="encryptletter('e')">E</button>
+                        <button onclick="encryptletter('r')">R</button>
+                        <button onclick="encryptletter('t')">T</button>
+                        <button onclick="encryptletter('z')">Z</button>
+                        <button onclick="encryptletter('u')">U</button>
+                        <button onclick="encryptletter('i')">I</button>
+                        <button onclick="encryptletter('o')">O</button>
+                        <button onclick="encryptletter('p')">P</button>
+                    </section>
+                    
+                    <section class="horizontal_machine_comp mainkeyboard" id="secondline">
+                        <button onclick="encryptletter('a')">A</button>
+                        <button onclick="encryptletter('s')">S</button>
+                        <button onclick="encryptletter('d')">D</button>
+                        <button onclick="encryptletter('f')">F</button>
+                        <button onclick="encryptletter('g')">G</button>
+                        <button onclick="encryptletter('h')">H</button>
+                        <button onclick="encryptletter('j')">J</button>
+                        <button onclick="encryptletter('k')">K</button>
+                        <button onclick="encryptletter('l')">L</button>
+                            
+                    </section>
+        
+                    <section class="horizontal_machine_comp mainkeyboard" id="thirdline">
+                        <button onclick="encryptletter('y')">Y</button>
+                        <button onclick="encryptletter('x')">X</button>
+                        <button onclick="encryptletter('c')">C</button>
+                        <button onclick="encryptletter('v')">V</button>
+                        <button onclick="encryptletter('b')">B</button>
+                        <button onclick="encryptletter('n')">N</button>
+                        <button onclick="encryptletter('m')">M</button>
+                    </section>
+                </div>
+                
                 <br>
                 <section class="horizontal_machine_comp mainplugboard">
                     <button onclick="plugboardadd('q')" id="plugq">Q</button>
@@ -135,6 +140,7 @@
 
             <section id="machine_explenation_body">
                 <p id="machine_explenation_text">Hover over each section of the machine to get a detailed explenation of the componant</p>
+                <img src="" id="machine_explenation_image">
             </section>
         </div>
         
@@ -151,4 +157,5 @@
     </div>
     
 </body>
+<script src="backendmath/main.js"></script>
 </html>

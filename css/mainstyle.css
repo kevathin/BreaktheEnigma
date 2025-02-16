@@ -42,6 +42,7 @@ h1 {
     align-items: center;
     justify-content: center;
     border-radius: 20px;
+    background-color: white;
 }
 
 .horizontal_machine_comp{
@@ -79,9 +80,15 @@ h1 {
     padding-left: 6%;
     padding-right: 10%;
 }
+#firstline{
+    display: flex;
+    width: 100%;
+}
 #outputletter{
     display: flex;
     justify-content: center;
+    background-color: gray;
+    border: 1px solid black;
 }
 #control_buttons{
     display: inline-flex;
@@ -93,7 +100,28 @@ h1 {
     writing-mode:vertical-rl;
     align-items: center;  
 }
-#rototors{
+#machine_explenation_body{
     display: flex;
+    width: 30%;
+    padding-left: 1%;
+    flex-direction: column;
+}
+.rotors{
+    width: 100%;
+    background-color: gray;
+    border: 1px solid black;
+}
+.mainplugboard{
+    background-color: grey;
+    border: 1px solid black;
+}
+#keyboardholder{
+    background-color: grey;
+    border: 1px solid black;
     align-items: center;
+}
+#machine_explenation_image{
+    max-width: 100%;
+    width: auto;
+    height: auto;
 }

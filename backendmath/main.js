@@ -425,26 +425,30 @@ function recoverinitialsetting(){
     visibleupdate("outputletter", "output value");
 }
 
-var rotorBody = document.getElementById("rotors");
+var rotorBody = document.querySelector("#rotors");
 rotorBody.addEventListener("mouseenter", function(){
-    document.querySelector("#machine_explenation_text").innerHTML = "fe";
+    let speach = "Each rotor contails all 26 characters and are organized from a-z. Each rotor starts at position 0 where 0 = a, 1 = b and so on. Each character is translated into its number representation starting from 0 all the way to 25. ex: the first rotor is in position 1 and the user typed a. the letter a with the value of 0 will be given the result of 1 or b. The reflecter gives a direct encryption between 2 letters. ex: c results in f and so f results in c.";
+    document.querySelector("#machine_explenation_image").setAttribute("src", "images/rotor.png");
+    document.querySelector("#machine_explenation_text").innerHTML = speach;
 
 });
 
-var outputBody = document.getElementById("outputletter");
+var outputBody = document.querySelector("#outputletter");
 outputBody.addEventListener("mouseenter",function(){
     document.querySelector("#machine_explenation_text").innerHTML = "fi";
 
 });
 
-var keyBoardBody = document.getElementsByClassName("mainkeyboard");
+var keyBoardBody = document.querySelector(".mainkeyboard");
 keyBoardBody.addEventListener("mouseenter",function(){
     document.querySelector("#machine_explenation_text").innerHTML = "fo";
 
 });
 
-var mainPlugBody = document.getElementsByClassName("mainplugboard");
+var mainPlugBody = document.querySelector(".mainplugboard");
 mainPlugBody.addEventListener("mouseenter",function(){
-    document.querySelector("#machine_explenation_text").innerHTML = "fu";
+    let speach = "The plug board contains all 26 characters and you are able to connect 2 characters with a plug. Once connecting the plug board the character will switch out when one or the other is pressed before moving on to the main rotors. ex: if you switched a and d then proceeded to type a. The result of which would be d";
+    document.querySelector("#machine_explenation_image").setAttribute("src", "images/plugboard.jpg");
+    document.querySelector("#machine_explenation_text").innerHTML = speach;
 
 });

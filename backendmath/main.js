@@ -642,10 +642,11 @@ function secondquestion(){
         secondalr = 1;
     }
 }
-function theirdquestion(){
-    let questionThreeAnswer = document.getElementById.value;
-    if(questionThreeAnswer == "26^3"){
-        document.getElementById("answer2").innerHTML = "yeesh that is still a big number to compute. By my calculations that's about over 5 million combinations. Well no time to waste.";
+function thirdquestion(){
+    let questionThreeAnswer = document.getElementById("part3").value;
+    //console.log(questionThreeAnswer);
+    if(questionThreeAnswer == 17576){
+        document.getElementById("answer3").innerHTML = "yeesh that is still a big number to compute. By my calculations that's about over 5 million combinations. Well no time to waste.";
         thirdalr = 1;
     }
 }

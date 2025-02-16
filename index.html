@@ -44,17 +44,15 @@
         
         <div id="machine_section">
             <div id="example_machine">
-                <section class="horizontal_machine_comp">
-                    <p class="tall_shape"></p>
+                <section class="horizontal_machine_comp" id="rototors">
+                    <p class="tall_shape upletters">REFLECTOR</p>
                     <p class="tall_shape"><button id="rotorC" onclick="rotate('rotorC')">0</button></p>
                     <p class="tall_shape"><button id="rotorB" onclick="rotate('rotorB')">0</button></p>
                     <p class="tall_shape"><button id="rotorA" onclick="rotate('rotorA')">0</button></p>
-                    <p class="tall_shape"></p>
+                    <p class="tall_shape upletters">INPUT</p>
                 </section>
-                
-                <br>
+
                 <p id="outputletter">output value</p>
-                <br>
 
                 <section class="horizontal_machine_comp">
                     <button onclick="encryptletter('q')">Q</button>
@@ -123,6 +121,11 @@
                     <button onclick="plugboardadd('b')" id="plugb">B</button>
                     <button onclick="plugboardadd('n')" id="plugn">N</button>
                     <button onclick="plugboardadd('m')" id="plugm">M</button>
+                </section>
+
+                <section id="control_buttons">
+                    <button onclick="cleareverything()">Clear Settings</button>
+                    <button onclick="recoverinitialsetting()">Get Previous Settings</button>
                 </section>
             </div>
 

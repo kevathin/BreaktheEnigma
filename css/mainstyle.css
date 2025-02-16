@@ -1,3 +1,4 @@
+
 #usableBody , body, html{
     width: 100%;
     
@@ -35,7 +36,7 @@ h1 {
 
 .tall_shape{
     display: flex;
-    height: 100px;
+    height: 120px;
     width: 30px;
     border: solid black 1px;
     align-items: center;
@@ -45,7 +46,7 @@ h1 {
 
 .horizontal_machine_comp{
     display: inline-flex;
-    
+    justify-items: center;
     justify-content: space-between;
 }
 
@@ -80,4 +81,18 @@ h1 {
 #outputletter{
     display: flex;
     justify-content: center;
+}
+#control_buttons{
+    display: inline-flex;
+    
+    justify-content: space-around;
+}
+
+.upletters{
+    writing-mode:vertical-rl;
+    align-items: center;  
+}
+#rototors{
+    display: flex;
+    align-items: center;
 }

@@ -22,8 +22,8 @@ class LetterToOrFromNumber{
     has the key of the lowercase letters with its corresponding integer value
     */
     setupLetterToNumber(){
-        let g = 0;
-        for(let i = 97; i<= 122; i++){
+        var g = 0;
+        for(var i = 97; i<= 122; i++){
             this.letterMap.set(String.fromCharCode(i),g);
             g++;
         }
@@ -32,8 +32,8 @@ class LetterToOrFromNumber{
     has the kay of the integer representation of the letters with its corresponding letter value
     */
     setupNumberToLetter(){
-        let g = 0;
-        for(let i = 97; i<= 122; i++){
+        var g = 0;
+        for(var i = 97; i<= 122; i++){
             this.numberMap.set(g,String.fromCharCode(i));
             g++;
         }
@@ -143,7 +143,7 @@ class Rotator{
     however the values will be rotated when required.
     */
     setup(){
-        for(let i = 0; i< 26; i++){
+        for(var i = 0; i< 26; i++){
             this.setvalue(i, i);
         }
     }
@@ -156,7 +156,7 @@ class Rotator{
     }
     getvalueaftermirror(valueinput){
 
-        for(let [key,value] of this.map.entries()){
+        for(var [key,value] of this.map.entries()){
             if(value == valueinput){
                 //console.log(key);
                 return key;
@@ -171,9 +171,9 @@ class Rotator{
     cycle of 26. else it will return false.
     */
     rotate(){
-        for(let i = 0; i < 26; i++){
-            let k = i;
-            let v = (this.map.get(i) +1) % 26;
+        for(var i = 0; i < 26; i++){
+            var k = i;
+            var v = (this.map.get(i) +1) % 26;
             this.setvalue(k,v);
         }
 
@@ -196,7 +196,12 @@ class Rotator{
     setvalue(k, v){
         this.map.set(k, v);
     }
-
+    setrotations(value){
+        this.rotations = value;
+    }
+    resetrotations(){
+        this.rotations = 0;
+    }
     
 }
 
@@ -207,7 +212,7 @@ class plugboard{
     }
 
     setup(){
-        for(let i = 0; i< 26; i++){
+        for(var i = 0; i< 26; i++){
             this.setvalue(i, i);
         }
     }
@@ -233,13 +238,30 @@ var rotatorB = new Rotator();
 var rotatorC = new Rotator();
 var mirror = new LinearCipher();
 var plugboardused = new plugboard();
-let plugs = 0;
-let plug1 = -1;
-let plug2 = -1;
+var plugs = 0;
+var plug1 = -1;
+var plug2 = -1;
+var outputmessage = "";
+var isencrypting = false;
+var initialASetting = 0;
+var initialBSetting = 0;
+var initialCSetting = 0;
+var initialplug1 = -1;
+var initialplug2 = -1;
+var initialplugs = 0;
+
 function encryptletter(letter){
+    if(isencrypting == false){
+        initialASetting = rotatorA.getrotations();
+        initialBSetting = rotatorB.getrotations();
+        initialCSetting = rotatorC.getrotations();
+        initialplugs = plugs;
+        initialplug1 = plug1;
+        initialplug2 = plug2;
+        isencrypting = true;
+    }
     
-    
-    let passingletter = converter.getNumber(letter);
+    var passingletter = converter.getNumber(letter);
     //console.log(passingletter);
     passingletter = plugboardused.getvalue(passingletter);
     //console.log("////"+passingletter);
@@ -261,24 +283,20 @@ function encryptletter(letter){
     //console.log(passingletter);
     passingletter = converter.getLetter(passingletter);
     console.log(passingletter);
-    visibleupdate("outputletter", passingletter)
+    encryptoutput(passingletter);
+
     if(rotatorA.rotate() == true){
-        visibleupdate("rotorA", rotatorA.getrotations());
-        
         if(rotatorB.rotate() == true){
-            visibleupdate("rotorB", rotatorB.getrotations());
             rotatorC.rotate();
             visibleupdate("rotorC", rotatorC.getrotations());
             
         }
-        else{
-            visibleupdate("rotorB", rotatorB.getrotations());
-        }
+        visibleupdate("rotorB", rotatorB.getrotations());
     }
-    else{
-        visibleupdate("rotorA", rotatorA.getrotations());
-    }
+    visibleupdate("rotorA", rotatorA.getrotations());
+    
 }
+
 function rotate(rotor){
     if(rotor == "rotorA"){
         rotatorA.rotate();
@@ -295,6 +313,11 @@ function rotate(rotor){
 
 function visibleupdate(updateid,value){
     document.getElementById(updateid).innerHTML = value;
+}
+
+function encryptoutput(value){
+    outputmessage += value;
+    document.getElementById("outputletter").innerHTML = outputmessage;
 }
 
 function plugvisibleupdate(updateid,value){
@@ -331,4 +354,73 @@ function plugboardadd(letter){
         plugvisibleupdate("plug"+converter.getLetter(letter), "red");
     }
 
+}
+
+function cleareverything(){
+    if(plugs == 1){
+        plugvisibleupdate(converter.getLetter(plug1), "buttonface");
+        plugs = 0;
+        plug1 = -1;
+    }else if(plugs == 2){
+        plugboardused.removepairvalue(plug1,plug2);
+        plugvisibleupdate("plug"+converter.getLetter(plug1), "buttonface");
+        plugvisibleupdate("plug"+converter.getLetter(plug2), "buttonface");
+        plugs = 0;
+        plug1 = -1;
+        plug2 = -1;
+    }
+
+    rotatorA.resetrotations();
+    rotatorB.resetrotations();
+    rotatorC.resetrotations();
+    visibleupdate("rotorA", rotatorA.getrotations());
+    visibleupdate("rotorB", rotatorB.getrotations());
+    visibleupdate("rotorC", rotatorC.getrotations());
+    isencrypting = false;
+    visibleupdate("outputletter", "output value");
+}
+
+function recoverinitialsetting(){
+    if(plugs == 1){
+        plugvisibleupdate(converter.getLetter(plug1), "buttonface");
+        plugs = 0;
+        plug1 = -1;
+    }else if(plugs == 2){
+        plugboardused.removepairvalue(plug1,plug2);
+        plugvisibleupdate("plug"+converter.getLetter(plug1), "buttonface");
+        plugvisibleupdate("plug"+converter.getLetter(plug2), "buttonface");
+        plugs = 0;
+        plug1 = -1;
+        plug2 = -1;
+    }
+    plug1 = initialplug1;
+    plug2 = initialplug2;
+    plugs = initialplugs;
+    if(plugs == 2){
+        plugvisibleupdate("plug"+converter.getLetter(plug1), "red");
+        plugvisibleupdate("plug"+converter.getLetter(plug2), "red");
+        plugboardused.setpairvalue(plug1,plug2)
+    } 
+    outputmessage = "";
+    rotatorA.setrotations(initialASetting);
+    rotatorB.setrotations(initialBSetting);
+    rotatorC.setrotations(initialCSetting);
+    rotatorA.setup();
+    rotatorB.setup();
+    rotatorC.setup();
+    for(var i = 0; i <initialASetting; i++){
+        rotatorA.rotate();
+    }
+    for(var i = 0; i <initialBSetting; i++){
+        rotatorB.rotate();
+    }
+    for(var i = 0; i <initialCSetting; i++){
+        rotatorB.rotate();
+    }
+    console.log(rotatorA.getrotations());
+    visibleupdate("rotorA", rotatorA.getrotations());
+    visibleupdate("rotorB", rotatorB.getrotations());
+    visibleupdate("rotorC", rotatorC.getrotations());
+
+    visibleupdate("outputletter", "output value");
 }

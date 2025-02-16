@@ -13,8 +13,8 @@ body{
 }
 #usableBody{
     display: flex;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 16%;
+    margin-right: 16%;
     flex-direction: column;
     background-color: bisque;
     padding: 2%;
@@ -59,6 +59,8 @@ h1 {
 }
 #example_machine{
     flex-direction: column;
+    background-color: darkgray;
+    border: 1px solid black;
 }
 
 #machine_explenation{
@@ -92,7 +94,7 @@ h1 {
 }
 #control_buttons{
     display: inline-flex;
-    
+    margin-bottom: 2%;
     justify-content: space-around;
 }
 
@@ -108,13 +110,9 @@ h1 {
 }
 .rotors{
     width: 100%;
-    background-color: gray;
-    border: 1px solid black;
+    
 }
-.mainplugboard{
-    background-color: grey;
-    border: 1px solid black;
-}
+
 #keyboardholder{
     background-color: grey;
     border: 1px solid black;
@@ -124,4 +122,25 @@ h1 {
     max-width: 100%;
     width: auto;
     height: auto;
+}
+#plugboardholder{
+    background-color: grey;
+    border: 1px solid black;
+    align-items: center;
+}
+.mainplugboard{
+    display: flex;
+}
+.machinepart{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+#rotors{
+    background-color: gray;
+    border: 1px solid black;
+}
+#wires{
+    height: 100%;
+    width: 100%;
 }

@@ -435,12 +435,14 @@ rotorBody.addEventListener("mouseenter", function(){
 
 var outputBody = document.querySelector("#outputletter");
 outputBody.addEventListener("mouseenter",function(){
+    document.querySelector("#machine_explenation_image").setAttribute("src", "images/lightandkeyboard.jpg");
     document.querySelector("#machine_explenation_text").innerHTML = "fi";
 
 });
 
 var keyBoardBody = document.querySelector(".mainkeyboard");
 keyBoardBody.addEventListener("mouseenter",function(){
+    document.querySelector("#machine_explenation_image").setAttribute("src", "images/lightandkeyboard.jpg");
     document.querySelector("#machine_explenation_text").innerHTML = "fo";
 
 });

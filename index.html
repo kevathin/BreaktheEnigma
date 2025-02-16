@@ -45,6 +45,7 @@
         <div id="machine_section">
             <div id="example_machine">
                 <div id="rotors">
+                    <h4 class="machinepart">The rotors</h4>
                     <section class="horizontal_machine_comp rotors">
                         <p class="tall_shape upletters">REFLECTOR</p>
                         <p class="tall_shape"><button id="rotorC" onclick="rotate('rotorC')">0</button></p>
@@ -57,6 +58,7 @@
 
                 <p id="outputletter" class="outputletter">output value</p>
                 <div id="keyboardholder">
+                    <h4 class="machinepart">The keyboard</h4>
                     <section class="horizontal_machine_comp mainkeyboard" id="firstline">
                         <button onclick="encryptletter('q')">Q</button>
                         <button onclick="encryptletter('w')">W</button>
@@ -93,41 +95,44 @@
                         <button onclick="encryptletter('m')">M</button>
                     </section>
                 </div>
-                
                 <br>
-                <section class="horizontal_machine_comp mainplugboard">
-                    <button onclick="plugboardadd('q')" id="plugq">Q</button>
-                    <button onclick="plugboardadd('w')" id="plugw">W</button>
-                    <button onclick="plugboardadd('e')" id="pluge">E</button>
-                    <button onclick="plugboardadd('r')" id="plugr">R</button>
-                    <button onclick="plugboardadd('t')" id="plugt">T</button>
-                    <button onclick="plugboardadd('z')" id="plugz">Z</button>
-                    <button onclick="plugboardadd('u')" id="plugu">U</button>
-                    <button onclick="plugboardadd('i')" id="plugi">I</button>
-                    <button onclick="plugboardadd('o')" id="plugo">O</button>
-                </section>
-                <section id="middle" class="horizontal_machine_comp mainplugboard" >
-                    <button onclick="plugboardadd('p')" id="plugp">P</button>
-                    <button onclick="plugboardadd('a')" id="pluga">A</button>
-                    <button onclick="plugboardadd('s')" id="plugs">S</button>
-                    <button onclick="plugboardadd('d')" id="plugd">D</button>
-                    <button onclick="plugboardadd('f')" id="plugf">F</button>
-                    <button onclick="plugboardadd('g')" id="plugg">G</button>
-                    <button onclick="plugboardadd('h')" id="plugh">H</button>
-                    <button onclick="plugboardadd('j')" id="plugj">J</button>
-                </section>
-                <section class="horizontal_machine_comp mainplugboard">
-                    <button onclick="plugboardadd('k')" id="plugk">K</button>
-                    <button onclick="plugboardadd('l')" id="plugl">L</button>
-                    <button onclick="plugboardadd('y')" id="plugy">Y</button>
-                    <button onclick="plugboardadd('x')" id="plugx">X</button>
-                    <button onclick="plugboardadd('c')" id="plugc">C</button>
-                    <button onclick="plugboardadd('v')" id="plugv">V</button>
-                    <button onclick="plugboardadd('b')" id="plugb">B</button>
-                    <button onclick="plugboardadd('n')" id="plugn">N</button>
-                    <button onclick="plugboardadd('m')" id="plugm">M</button>
-                </section>
-
+                
+                <div id="plugboardholder">
+                    <h4 class="machinepart">The plugboard</h4>
+                    <section class="horizontal_machine_comp mainplugboard">
+                        <button onclick="plugboardadd('q')" id="plugq">Q</button>
+                        <button onclick="plugboardadd('w')" id="plugw">W</button>
+                        <button onclick="plugboardadd('e')" id="pluge">E</button>
+                        <button onclick="plugboardadd('r')" id="plugr">R</button>
+                        <button onclick="plugboardadd('t')" id="plugt">T</button>
+                        <button onclick="plugboardadd('z')" id="plugz">Z</button>
+                        <button onclick="plugboardadd('u')" id="plugu">U</button>
+                        <button onclick="plugboardadd('i')" id="plugi">I</button>
+                        <button onclick="plugboardadd('o')" id="plugo">O</button>
+                    </section>
+                    <section id="middle" class="horizontal_machine_comp mainplugboard" >
+                        <button onclick="plugboardadd('p')" id="plugp">P</button>
+                        <button onclick="plugboardadd('a')" id="pluga">A</button>
+                        <button onclick="plugboardadd('s')" id="plugs">S</button>
+                        <button onclick="plugboardadd('d')" id="plugd">D</button>
+                        <button onclick="plugboardadd('f')" id="plugf">F</button>
+                        <button onclick="plugboardadd('g')" id="plugg">G</button>
+                        <button onclick="plugboardadd('h')" id="plugh">H</button>
+                        <button onclick="plugboardadd('j')" id="plugj">J</button>
+                    </section>
+                    <section class="horizontal_machine_comp mainplugboard">
+                        <button onclick="plugboardadd('k')" id="plugk">K</button>
+                        <button onclick="plugboardadd('l')" id="plugl">L</button>
+                        <button onclick="plugboardadd('y')" id="plugy">Y</button>
+                        <button onclick="plugboardadd('x')" id="plugx">X</button>
+                        <button onclick="plugboardadd('c')" id="plugc">C</button>
+                        <button onclick="plugboardadd('v')" id="plugv">V</button>
+                        <button onclick="plugboardadd('b')" id="plugb">B</button>
+                        <button onclick="plugboardadd('n')" id="plugn">N</button>
+                        <button onclick="plugboardadd('m')" id="plugm">M</button>
+                    </section>    
+                </div>
+                <br>
                 <section id="control_buttons">
                     <button onclick="cleareverything()">Clear Settings</button>
                     <button onclick="recoverinitialsetting()">Get Previous Settings</button>
@@ -135,7 +140,7 @@
             </div>
 
             <section id="input_connection">
-
+                <img src="images/wires.png" id="wires">
             </section>
 
             <section id="machine_explenation_body">

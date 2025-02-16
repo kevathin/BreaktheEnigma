@@ -45,7 +45,7 @@ h1 {
 
 .horizontal_machine_comp{
     display: inline-flex;
-    width: 100%;
+    
     justify-content: space-between;
 }
 
@@ -61,4 +61,23 @@ h1 {
 #machine_explenation{
     display: flex;
     width: 30%;
+}
+#middle{
+    display: flex;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+#thirdline{
+    display: flex;
+    padding-left: 12%;
+    padding-right: 24%;
+}
+#secondline{
+    display: flex;
+    padding-left: 6%;
+    padding-right: 10%;
+}
+#outputletter{
+    display: flex;
+    justify-content: center;
 }

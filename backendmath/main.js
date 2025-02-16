@@ -154,6 +154,15 @@ class Rotator{
     getvalue(valueinput){
         return this.map.get(valueinput);
     }
+    getvalueaftermirror(valueinput){
+
+        for(let [key,value] of this.map.entries()){
+            if(value == valueinput){
+                //console.log(key);
+                return key;
+            }
+        }
+    }
     /*
     this will rotate all the values by adding 1 to the 
     current integer value and making it mod 26 to stay in 
@@ -224,9 +233,35 @@ var rotatorB = new Rotator();
 var rotatorC = new Rotator();
 var mirror = new LinearCipher();
 var plugboardused = new plugboard();
-
+let plugs = 0;
+let plug1 = -1;
+let plug2 = -1;
 function encryptletter(letter){
     
+    
+    let passingletter = converter.getNumber(letter);
+    //console.log(passingletter);
+    passingletter = plugboardused.getvalue(passingletter);
+    //console.log("////"+passingletter);
+    passingletter = rotatorA.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorB.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorC.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = mirror.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorC.getvalueaftermirror(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorB.getvalueaftermirror(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorA.getvalueaftermirror(passingletter);
+    //console.log(passingletter);
+    passingletter = plugboardused.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = converter.getLetter(passingletter);
+    console.log(passingletter);
+    visibleupdate("outputletter", passingletter)
     if(rotatorA.rotate() == true){
         visibleupdate("rotorA", rotatorA.getrotations());
         
@@ -243,42 +278,16 @@ function encryptletter(letter){
     else{
         visibleupdate("rotorA", rotatorA.getrotations());
     }
-    let passingletter = converter.getNumber(letter);
-    //console.log(passingletter);
-    passingletter = plugboardused.getvalue(passingletter);
-    //console.log("////"+passingletter);
-    passingletter = rotatorA.getvalue(passingletter);
-    //console.log(passingletter);
-    passingletter = rotatorB.getvalue(passingletter);
-    //console.log(passingletter);
-    passingletter = rotatorC.getvalue(passingletter);
-    //console.log(passingletter);
-    passingletter = mirror.getvalue(passingletter);
-    //console.log(passingletter);
-    passingletter = rotatorC.getvalue(passingletter);
-    //console.log(passingletter);
-    passingletter = rotatorB.getvalue(passingletter);
-    //console.log(passingletter);
-    passingletter = rotatorA.getvalue(passingletter);
-    //console.log(passingletter);
-    passingletter = plugboardused.getvalue(passingletter);
-    //console.log(passingletter);
-    
 }
 function rotate(rotor){
     if(rotor == "rotorA"){
-
         rotatorA.rotate();
         visibleupdate("rotorA", rotatorA.getrotations());
-
     }
     else if(rotor == "rotorB") {
-        
         rotatorB.rotate();
         visibleupdate("rotorB", rotatorB.getrotations());
-
     } else {
-        
         rotatorC.rotate();
         visibleupdate("rotorC", rotatorC.getrotations());
     }
@@ -286,4 +295,40 @@ function rotate(rotor){
 
 function visibleupdate(updateid,value){
     document.getElementById(updateid).innerHTML = value;
+}
+
+function plugvisibleupdate(updateid,value){
+    document.getElementById(updateid).style.backgroundColor = value;
+}
+
+function plugboardadd(letter){
+    letter = converter.getNumber(letter);
+    if(plugs == 1){
+        if(letter == plug1){
+            plug1 = -1;
+            plugs = 0;
+            
+            plugvisibleupdate("plug"+converter.getLetter(letter), "buttonface");
+        }
+        else{
+            plug2 = letter;
+            plugboardused.setpairvalue(plug1,plug2);
+            plugs = 2;
+            plugvisibleupdate("plug"+converter.getLetter(letter), "red");
+        }
+    }
+    else if(plugs == 2){
+        plugvisibleupdate("plug"+converter.getLetter(plug1), "buttonface");
+        plugvisibleupdate("plug"+converter.getLetter(plug2), "buttonface");
+        plugboardused.removepairvalue(plug1,plug2);
+        plugs = 1;
+        plug1 = letter;
+        plugvisibleupdate("plug"+converter.getLetter(letter), "red");
+        plug2 = -1;
+    }else{
+        plug1 = letter;
+        plugs = 1;
+        plugvisibleupdate("plug"+converter.getLetter(letter), "red");
+    }
+
 }

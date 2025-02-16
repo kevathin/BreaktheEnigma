@@ -438,15 +438,17 @@ rotorBody.addEventListener("mouseenter", function(){
 
 var outputBody = document.querySelector("#outputletter");
 outputBody.addEventListener("mouseenter",function(){
+    let speach ="The original machine had a glowing panel (top half of the photo for reference) which would glow the output character after pressing a key. Historicly they needed 2 people to man the Enigma Machine because they needed 1 person to encript the message and 1 person to write the resulting value";
     document.querySelector("#machine_explenation_image").setAttribute("src", "images/lightandkeyboard.jpg");
-    document.querySelector("#machine_explenation_text").innerHTML = "fi";
+    document.querySelector("#machine_explenation_text").innerHTML = speach;
 
 });
 
 var keyBoardBody = document.querySelector(".mainkeyboard");
 keyBoardBody.addEventListener("mouseenter",function(){
+    let speach ="If taking a closer look to the keyboard you might realize that is not like how modern keyboards have their layout. This is because in WW2 where their keyboard layout had the most sagnificant differnece of having the Y and Z keys switched. but for functionality this is the keyboard input for the encrypted message.";
     document.querySelector("#machine_explenation_image").setAttribute("src", "images/lightandkeyboard.jpg");
-    document.querySelector("#machine_explenation_text").innerHTML = "fo";
+    document.querySelector("#machine_explenation_text").innerHTML = speach;
     //exampleDecryption(text, partialsolve);
 });
 
@@ -617,3 +619,33 @@ function exampleDecryption(text, partialsolve){
 }*/
 
 
+let firstalr = 0;
+let secondalr = 0;
+let thirdalr = 0;
+let forthalr = 0;
+let fithalr = 0;
+
+function firstquestion(){
+    let questionOneAnswer = document.getElementById("question1").value;
+    questionOneAnswer = questionOneAnswer.toLowerCase();
+    questionOneAnswer = questionOneAnswer.replace("[^a-z]", "");
+    if(questionOneAnswer == "happyhair"){
+        document.getElementById("answer1").innerHTML = "How come I didn't see that? happyhair is used in every one of these telegraphs. Great work anyway! lets move on.";
+        firstalr = 1;
+    }
+}
+function secondquestion(){
+    let questionTwoAnswerA = document.getElementById("part2A").value;
+    let questionTwoAnswerB = document.getElementById("part2B").value;
+    if(questionTwoAnswerA == 25 && questionTwoAnswerB == 26){
+        document.getElementById("answer2").innerHTML = "It's so obvious now that I look at it now! Thank you and your team for the help in this section!";
+        secondalr = 1;
+    }
+}
+function theirdquestion(){
+    let questionThreeAnswer = document.getElementById.value;
+    if(questionThreeAnswer == "26^3"){
+        document.getElementById("answer2").innerHTML = "yeesh that is still a big number to compute. By my calculations that's about over 5 million combinations. Well no time to waste.";
+        thirdalr = 1;
+    }
+}

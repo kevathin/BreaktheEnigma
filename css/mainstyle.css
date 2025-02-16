@@ -91,6 +91,11 @@ h1 {
     justify-content: center;
     background-color: gray;
     border: 1px solid black;
+    align-self: center;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:inherit;
 }
 #control_buttons{
     display: inline-flex;

@@ -373,6 +373,9 @@ function cleareverything(){
     rotatorA.resetrotations();
     rotatorB.resetrotations();
     rotatorC.resetrotations();
+    rotatorA.setup();
+    rotatorB.setup();
+    rotatorC.setup();
     visibleupdate("rotorA", rotatorA.getrotations());
     visibleupdate("rotorB", rotatorB.getrotations());
     visibleupdate("rotorC", rotatorC.getrotations());
@@ -402,12 +405,12 @@ function recoverinitialsetting(){
         plugboardused.setpairvalue(plugLocationA,plugLocationB)
     } 
     outputMessage = "";
-    rotatorA.setrotations(initialASetting);
-    rotatorB.setrotations(initialBSetting);
-    rotatorC.setrotations(initialCSetting);
     rotatorA.setup();
     rotatorB.setup();
     rotatorC.setup();
+    rotatorA.resetrotations();
+    rotatorB.resetrotations();
+    rotatorC.resetrotations();
     for(var i = 0; i <initialASetting; i++){
         rotatorA.rotate();
     }
@@ -444,7 +447,7 @@ var keyBoardBody = document.querySelector(".mainkeyboard");
 keyBoardBody.addEventListener("mouseenter",function(){
     document.querySelector("#machine_explenation_image").setAttribute("src", "images/lightandkeyboard.jpg");
     document.querySelector("#machine_explenation_text").innerHTML = "fo";
-
+    //exampleDecryption(text, partialsolve);
 });
 
 var mainPlugBody = document.querySelector(".mainplugboard");
@@ -454,3 +457,163 @@ mainPlugBody.addEventListener("mouseenter",function(){
     document.querySelector("#machine_explenation_text").innerHTML = speach;
 
 });
+
+/*the example decryption will have rotors positioned 0 2 4 respectivly
+and the plug board will have a A and E plug the common key word is happy hair
+*/
+
+// the decryption will be mndtrjyhsilamqnpg
+// the result should be iamaveryhappyhair
+/*
+var text = "qxtgcoixf";
+var partialsolve = "happyhair";
+function exampleDecryption(text, partialsolve){
+    found = false;
+    text = text.split("");
+    partialsolve = partialsolve.split("");
+    for(let i = 0; i < 9; i++){
+        console.log(partialsolve[i] + " " + text[i]);
+        
+    }
+    for(let testPlugA = 0; testPlugA < 25; testPlugA++){
+        for(let testPlugB = testPlugA +1; testPlugB <26; testPlugB++){
+            let breakplugboardused = new plugboard();
+            breakplugboardused.setpairvalue(testPlugA,testPlugB);
+            let breakmirror = new LinearCipher();
+            for(let rotorcpen = 0; rotorcpen <=25;rotorcpen++){
+                for(let rotorbpen = 0; rotorbpen <=25;rotorbpen++){
+                    for(let rotorapen = 0; rotorapen <=25 ;rotorapen++){
+                        let breakrotatorA = new Rotator();
+                        let breakrotatorB = new Rotator();
+                        let breakrotatorC = new Rotator();
+                        
+                        
+                        for(let i = rotorcpen; i > 0; i--){
+                            breakrotatorC.rotate();
+                        }
+                        for(let i = rotorbpen; i > 0; i--){
+                            breakrotatorB.rotate();
+                        }
+                        for(let i = rotorapen; i > 0; i--){
+                            breakrotatorA.rotate();
+                        }
+                        found = true;
+                        let passingletter;
+                        for(let i = 0; i < 9; i++){
+                            passingletter = converter.getNumber(partialsolve[i]);
+                            //console.log(passingletter);
+                            passingletter = breakplugboardused.getvalue(passingletter);
+                            //console.log("////"+passingletter);
+                            passingletter = breakrotatorA.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorB.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorC.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakmirror.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorC.getvalueaftermirror(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorB.getvalueaftermirror(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorA.getvalueaftermirror(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakplugboardused.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = converter.getLetter(passingletter);
+                            if(passingletter != text[i]){
+
+                                found = false;
+                                break;
+                            }
+                        }
+                        if(found == true){
+                            console.log("hi");
+                        }
+                    }
+                }
+            }
+        }   
+    }*/
+
+    /*
+    for(let rotorcpen = 0; rotorcpen <=25;rotorcpen++){
+        for(let rotorbpen = 0; rotorbpen <=25;rotorbpen++){
+            for(let rotorapen = 0; rotorapen <=25 ;rotorapen++){
+                let testPlugA = -1;
+                let testPlugB = 0;
+                while(testPlugA != 24 && testPlugB != 25  && found !=true){
+                    testPlugA ++;
+                    testPlugB = testPlugA +1;
+                    while(testPlugB != 26 && found !=true){
+                        let breakrotatorA = new Rotator();
+                        let breakrotatorB = new Rotator();
+                        let breakrotatorC = new Rotator();
+                        let breakmirror = new LinearCipher();
+                        let breakplugboardused = new plugboard();
+                        breakplugboardused.setpairvalue(testPlugA,testPlugB);
+                        for(let i = rotorcpen; i > 0; i--){
+                            breakrotatorC.rotate();
+                        }
+                        for(let i = rotorbpen; i > 0; i--){
+                            breakrotatorB.rotate();
+                        }
+                        for(let i = rotorapen; i > 0; i--){
+                            breakrotatorA.rotate();
+                        }
+                        found = true;
+                        let passingletter;
+                        for(let i = 0; i < 9; i++){
+                            passingletter = converter.getNumber(partialsolve[i]);
+                            //console.log(passingletter);
+                            passingletter = breakplugboardused.getvalue(passingletter);
+                            //console.log("////"+passingletter);
+                            passingletter = breakrotatorA.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorB.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorC.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakmirror.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorC.getvalueaftermirror(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorB.getvalueaftermirror(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakrotatorA.getvalueaftermirror(passingletter);
+                            //console.log(passingletter);
+                            passingletter = breakplugboardused.getvalue(passingletter);
+                            //console.log(passingletter);
+                            passingletter = converter.getLetter(passingletter);
+                            if(passingletter != text[i]){
+
+                                found = false;
+                                break;
+                            } 
+                        }
+                        if(testPlugA == 0 && testPlugB==4){
+                            console.log(found);
+                        }
+                        //console.log(found);
+                        breakplugboardused.removepairvalue(testPlugA,testPlugB);
+                        testPlugB ++;
+                        
+                    }
+                    testPlugB = testPlugA+1;
+                }
+                console.log(rotorcpen);
+                if(found == true){
+                    break;
+                }
+            }
+            if(found == true){
+                break;
+            }
+        }
+        if(found == true){
+            break;
+        }
+    
+}*/
+
+

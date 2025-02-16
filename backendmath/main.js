@@ -73,9 +73,34 @@ class LinearCipher{
     character.
     */
     setup(){
-        for(let i = 0; i< 26; i++){
-            this.map.set(i, i);
-        }
+        this.setvalue(0, 7);
+        this.setvalue(1, 13);
+        this.setvalue(2, 24);
+        this.setvalue(3, 18);
+        this.setvalue(4, 21);
+        this.setvalue(5, 9);
+        this.setvalue(6, 23);
+        this.setvalue(7, 0);
+        this.setvalue(8, 17);
+        this.setvalue(9, 5);
+        this.setvalue(10, 25);
+        this.setvalue(11, 15);
+        this.setvalue(12, 19);
+        this.setvalue(13, 1); 
+        this.setvalue(14, 22);
+        this.setvalue(15, 11);
+        this.setvalue(16, 20);
+        this.setvalue(17, 8);
+        this.setvalue(18, 3);
+        this.setvalue(19, 12);
+        this.setvalue(20, 16);
+        this.setvalue(21, 4);
+        this.setvalue(22,14);
+        this.setvalue(23, 6);
+        this.setvalue(24, 2);
+        this.setvalue(25, 10);
+
+        
     }
 
     /*
@@ -153,7 +178,9 @@ class Rotator{
             return false;
         }
     }
-
+    getrotations(){
+        return this.rotations;
+    }
     /*
     sets the key to the value
     */
@@ -164,35 +191,99 @@ class Rotator{
     
 }
 
+class plugboard{
+    constructor(){
+        this.map = new Map();
+        this.setup();
+    }
+
+    setup(){
+        for(let i = 0; i< 26; i++){
+            this.setvalue(i, i);
+        }
+    }
+    setpairvalue(pair1,pair2){
+        this.setvalue(pair1,pair2);
+        this.setvalue(pair2,pair1);
+    }
+    removepairvalue(pair1,pair2){
+        this.setvalue(pair1,pair1);
+        this.setvalue(pair2,pair2);
+    }
+    getvalue(k){
+        return this.map.get(k);
+    }
+    setvalue(k,v){
+        this.map.set(k,v);
+    }
+}
 
 var converter = new LetterToOrFromNumber();
 var rotatorA = new Rotator();
 var rotatorB = new Rotator();
 var rotatorC = new Rotator();
 var mirror = new LinearCipher();
-
-
+var plugboardused = new plugboard();
 
 function encryptletter(letter){
-    let passingletter = converter.getNumber(letter);
-    passingletter = rotatorA.getvalue(passingletter);
-    passingletter = rotatorB.getvalue(passingletter);
-    passingletter = rotatorC.getvalue(passingletter);
-    passingletter = mirror.getvalue(passingletter);
-    passingletter = rotatorC.getvalue(passingletter);
-    passingletter = rotatorB.getvalue(passingletter);
-    passingletter = rotatorA.getvalue(passingletter);
-    console.log(passingletter);
+    
     if(rotatorA.rotate() == true){
+        visibleupdate("rotorA", rotatorA.getrotations());
+        
         if(rotatorB.rotate() == true){
+            visibleupdate("rotorB", rotatorB.getrotations());
             rotatorC.rotate();
+            visibleupdate("rotorC", rotatorC.getrotations());
+            
         }
+        else{
+            visibleupdate("rotorB", rotatorB.getrotations());
+        }
+    }
+    else{
+        visibleupdate("rotorA", rotatorA.getrotations());
+    }
+    let passingletter = converter.getNumber(letter);
+    //console.log(passingletter);
+    passingletter = plugboardused.getvalue(passingletter);
+    //console.log("////"+passingletter);
+    passingletter = rotatorA.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorB.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorC.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = mirror.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorC.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorB.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = rotatorA.getvalue(passingletter);
+    //console.log(passingletter);
+    passingletter = plugboardused.getvalue(passingletter);
+    //console.log(passingletter);
+    
+}
+function rotate(rotor){
+    if(rotor == "rotorA"){
 
+        rotatorA.rotate();
+        visibleupdate("rotorA", rotatorA.getrotations());
+
+    }
+    else if(rotor == "rotorB") {
+        
+        rotatorB.rotate();
+        visibleupdate("rotorB", rotatorB.getrotations());
+
+    } else {
+        
+        rotatorC.rotate();
+        visibleupdate("rotorC", rotatorC.getrotations());
     }
 }
 
-encryptletter("a");
-encryptletter("a");
-encryptletter("a");
-encryptletter("a");
-encryptletter("a");
+function visibleupdate(updateid,value){
+    document.getElementById(updateid).innerHTML = value;
+}

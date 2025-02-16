@@ -34,7 +34,7 @@
                 One of the taskforce teams has been able to recover one of their enigma machines, HURRAY!
                 After studying the machine you are able to seperate the machine into 4 main parts:
                 <ul>
-                    <li><dt>Roters:</dt><dd>This using a series of gears and a reflector will encrypt the message</dd></li>
+                    <li><dt>Rotors:</dt><dd>This using a series of gears and a reflector will encrypt the message</dd></li>
                     <li><dt>Display Board:</dt><dd>A display of characters where when a letter is pressed. a corresponding letter will glow</dd></li>
                     <li><dt>Keyboard:</dt><dd>A keyBoard that contains all the letters of the alphabet</dd></li>
                     <li><dt>Plugboard:</dt><dd>contains 26 plugs representing each letter where you can connect 2 Plugs together</dd></li>
@@ -44,7 +44,7 @@
         
         <div id="machine_section">
             <div id="example_machine">
-                <section class="horizontal_machine_comp" id="rototors">
+                <section class="horizontal_machine_comp" id="rotors">
                     <p class="tall_shape upletters">REFLECTOR</p>
                     <p class="tall_shape"><button id="rotorC" onclick="rotate('rotorC')">0</button></p>
                     <p class="tall_shape"><button id="rotorB" onclick="rotate('rotorB')">0</button></p>
@@ -54,7 +54,7 @@
 
                 <p id="outputletter">output value</p>
 
-                <section class="horizontal_machine_comp">
+                <section class="horizontal_machine_comp mainkeyboard">
                     <button onclick="encryptletter('q')">Q</button>
                     <button onclick="encryptletter('w')">W</button>
                     <button onclick="encryptletter('e')">E</button>
@@ -67,7 +67,7 @@
                     <button onclick="encryptletter('p')">P</button>
                 </section>
     
-                <section class="horizontal_machine_comp" id="secondline">
+                <section class="horizontal_machine_comp mainkeyboard" id="secondline">
                     <button onclick="encryptletter('a')">A</button>
                     <button onclick="encryptletter('s')">S</button>
                     <button onclick="encryptletter('d')">D</button>
@@ -80,7 +80,7 @@
                         
                 </section>
     
-                <section class="horizontal_machine_comp" id="thirdline">
+                <section class="horizontal_machine_comp mainkeyboard" id="thirdline">
                     <button onclick="encryptletter('y')">Y</button>
                     <button onclick="encryptletter('x')">X</button>
                     <button onclick="encryptletter('c')">C</button>
@@ -90,7 +90,7 @@
                     <button onclick="encryptletter('m')">M</button>
                 </section>
                 <br>
-                <section class="horizontal_machine_comp">
+                <section class="horizontal_machine_comp mainplugboard">
                     <button onclick="plugboardadd('q')" id="plugq">Q</button>
                     <button onclick="plugboardadd('w')" id="plugw">W</button>
                     <button onclick="plugboardadd('e')" id="pluge">E</button>
@@ -101,7 +101,7 @@
                     <button onclick="plugboardadd('i')" id="plugi">I</button>
                     <button onclick="plugboardadd('o')" id="plugo">O</button>
                 </section>
-                <section id="middle" class="horizontal_machine_comp" >
+                <section id="middle" class="horizontal_machine_comp mainplugboard" >
                     <button onclick="plugboardadd('p')" id="plugp">P</button>
                     <button onclick="plugboardadd('a')" id="pluga">A</button>
                     <button onclick="plugboardadd('s')" id="plugs">S</button>
@@ -111,7 +111,7 @@
                     <button onclick="plugboardadd('h')" id="plugh">H</button>
                     <button onclick="plugboardadd('j')" id="plugj">J</button>
                 </section>
-                <section class="horizontal_machine_comp">
+                <section class="horizontal_machine_comp mainplugboard">
                     <button onclick="plugboardadd('k')" id="plugk">K</button>
                     <button onclick="plugboardadd('l')" id="plugl">L</button>
                     <button onclick="plugboardadd('y')" id="plugy">Y</button>
@@ -133,8 +133,8 @@
 
             </section>
 
-            <section id="machine_explenation">
-                <p>yes</p>
+            <section id="machine_explenation_body">
+                <p id="machine_explenation_text">Hover over each section of the machine to get a detailed explenation of the componant</p>
             </section>
         </div>
         

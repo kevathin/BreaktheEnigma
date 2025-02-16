@@ -424,3 +424,27 @@ function recoverinitialsetting(){
 
     visibleupdate("outputletter", "output value");
 }
+
+var rotorBody = document.getElementById("rotors");
+rotorBody.addEventListener("mouseenter", function(){
+    document.querySelector("#machine_explenation_text").innerHTML = "fe";
+
+});
+
+var outputBody = document.getElementById("outputletter");
+outputBody.addEventListener("mouseenter",function(){
+    document.querySelector("#machine_explenation_text").innerHTML = "fi";
+
+});
+
+var keyBoardBody = document.getElementsByClassName("mainkeyboard");
+keyBoardBody.addEventListener("mouseenter",function(){
+    document.querySelector("#machine_explenation_text").innerHTML = "fo";
+
+});
+
+var mainPlugBody = document.getElementsByClassName("mainplugboard");
+mainPlugBody.addEventListener("mouseenter",function(){
+    document.querySelector("#machine_explenation_text").innerHTML = "fu";
+
+});

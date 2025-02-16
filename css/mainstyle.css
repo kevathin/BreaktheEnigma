@@ -48,6 +48,7 @@ h1 {
     display: inline-flex;
     justify-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 #machine_section, #example_machine{
